@@ -1,0 +1,44 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="employeeDetails()"><mat-icon>info</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="employeeForm" (ngSubmit)="onFormSubmit(employeeForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Employee First Name" formControlName="firstName"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!employeeForm.get('firstName').valid && employeeForm.get('firstName').touched">Please enter Employee First Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Employee Last Name" formControlName="lastName"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!employeeForm.get('lastName').valid && employeeForm.get('lastName').touched">Please enter Employee Last Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Gender" formControlName="gender"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!employeeForm.get('gender').valid && employeeForm.get('gender').touched">Please enter Gender</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Employee Salary" formControlName="salary"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!employeeForm.get('salary').valid && employeeForm.get('salary').touched">Please enter Employee First Name</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!employeeForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>
