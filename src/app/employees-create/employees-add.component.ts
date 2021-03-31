@@ -32,12 +32,14 @@ export class EmployeesAddComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.addEmployee(form)
       .subscribe(res => {
-          this.isLoadingResults = false;
-          this.router.navigate(['/employees']);
-        }, (err) => {
-          console.log(err);
-          this.isLoadingResults = false;
-        });
+        let id = res[0].id;
+        console.log("_id " + id);
+        this.isLoadingResults = false;
+        this.router.navigate(['/employees-list', id]);
+      }, (err) => {
+        console.log(err);
+        this.isLoadingResults = false;
+      });
   }  
 
 }

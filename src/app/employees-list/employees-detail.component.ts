@@ -10,7 +10,7 @@ import { Employee } from '../employee';
 })
 export class EmployeesDetailComponent implements OnInit {
 
-  employee: Employee = { id: null, 'firstName': '', 'lastName': '', 'gender': '', 'salary': null };
+  employee: Employee = { Id: null, 'FirstName': '', 'LastName': '', 'Gender': '', 'Salary': null };
   isLoadingResults = true;
 
   constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
@@ -20,7 +20,7 @@ export class EmployeesDetailComponent implements OnInit {
     this.getEmployeeDetails(this.route.snapshot.params['id']);
   }
 
-  getEmployeeDetails(id) {
+  getEmployeeDetails(id: number) {
     this.api.getEmployee(id)
       .subscribe(data => {
         this.employee = data[0];
@@ -29,7 +29,7 @@ export class EmployeesDetailComponent implements OnInit {
       });
   }
 
-  deleteEmployee(id) {
+  deleteEmployee(id: number) {
     this.isLoadingResults = true;
     this.api.deleteEmployee(id)
       .subscribe(res => {

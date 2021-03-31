@@ -13,10 +13,10 @@ export class EmployeesEditComponent implements OnInit {
 
   employeeForm: FormGroup;
   _id:number=null;
-  firstName:string='';
-  lastName:string='';
-  gender:string='';
-  salary:number=null;
+  FirstName:string='';
+  LastName:string='';
+  Gender:string='';
+  Salary:number=null;
   isLoadingResults = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
@@ -24,21 +24,22 @@ export class EmployeesEditComponent implements OnInit {
   ngOnInit() {
     this.getEmployee(this.route.snapshot.params['id']);
     this.employeeForm = this.formBuilder.group({
-      'firstName' : [null, Validators.required],
-      'lastName' : [null, Validators.required],
-      'gender' : [null, Validators.required],
-      'salary' : [null, Validators.required]
+      'FirstName' : [null, Validators.required],
+      'LastName' : [null, Validators.required],
+      'Gender' : [null, Validators.required],
+      'Salary' : [null, Validators.required]
     });
   }
 
-  getEmployee(id) {
-    this.api.getEmployee(id).subscribe(data => {
-      this._id = data.id;
+  getEmployee(id: number) {
+    this.api.getEmployee(id)
+    .subscribe(data => {
+      this._id = data[0].id;
       this.employeeForm.setValue({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        gender: data.gender,
-        salary: data.salary
+        FirstName: data[0].firstName,
+        LastName: data[0].lastName,
+        Gender: data[0].gender,
+        Salary: data[0].salary
       });
     });
   }
@@ -47,9 +48,10 @@ export class EmployeesEditComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.updateEmployee(this._id, form)
       .subscribe(res => {
-          let id = res['_id'];
+          let id = res[0].id;
+          console.log("_id " + id);
           this.isLoadingResults = false;
-          this.router.navigate(['/employee-details', id]);
+          this.router.navigate(['/employees-list', id]);
         }, (err) => {
           console.log(err);
           this.isLoadingResults = false;
@@ -58,7 +60,7 @@ export class EmployeesEditComponent implements OnInit {
   }
 
   employeeDetalis () {
-    this.router.navigate(['/employee-details', this._id]);
+    this.router.navigate(['/employees-list', this._id]);
   }
 
 }

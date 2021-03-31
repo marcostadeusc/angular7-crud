@@ -1,7 +1,7 @@
 export class Employee {
-    id: number;
-    firstName: string;
-    lastName: string;
-    gender: string;
-    salary: number;
+    Id: number;
+    FirstName: string;
+    LastName: string;
+    Gender: string;
+    Salary: number;
 }

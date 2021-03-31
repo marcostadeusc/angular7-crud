@@ -9,31 +9,31 @@
   <mat-card class="example-card">
     <form [formGroup]="employeeForm" (ngSubmit)="onFormSubmit(employeeForm.value)">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Employee First Name" formControlName="firstName"
+        <input matInput placeholder="Employee First Name" formControlName="FirstName"
                [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!employeeForm.get('firstName').valid && employeeForm.get('firstName').touched">Please enter Employee First Name</span>
+          <span *ngIf="!employeeForm.get('FirstName').valid && employeeForm.get('FirstName').touched">Please enter Employee First Name</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Employee Last Name" formControlName="lastName"
+        <input matInput placeholder="Employee Last Name" formControlName="LastName"
                [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!employeeForm.get('lastName').valid && employeeForm.get('lastName').touched">Please enter Employee Last Name</span>
+          <span *ngIf="!employeeForm.get('LastName').valid && employeeForm.get('LastName').touched">Please enter Employee Last Name</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Gender" formControlName="gender"
+        <input matInput placeholder="Gender" formControlName="Gender"
                [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!employeeForm.get('gender').valid && employeeForm.get('gender').touched">Please enter Gender</span>
+          <span *ngIf="!employeeForm.get('Gender').valid && employeeForm.get('Gender').touched">Please enter Gender</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Employee Salary" formControlName="salary"
+        <input matInput placeholder="Employee Salary" formControlName="Salary"
                [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!employeeForm.get('salary').valid && employeeForm.get('salary').touched">Please enter Employee First Name</span>
+          <span *ngIf="!employeeForm.get('Salary').valid && employeeForm.get('Salary').touched">Please enter Employee First Name</span>
         </mat-error>
       </mat-form-field>
       <div class="button-row">
