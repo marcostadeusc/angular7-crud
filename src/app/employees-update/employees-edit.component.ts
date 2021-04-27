@@ -48,7 +48,7 @@ export class EmployeesEditComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.updateEmployee(this._id, form)
       .subscribe(res => {
-          let id = res[0].id;
+          let id = res.id;
           console.log("_id " + id);
           this.isLoadingResults = false;
           this.router.navigate(['/employees-list', id]);

@@ -7,7 +7,7 @@ import { Employee } from './employee';
 const httpOptions = {
   headers: new HttpHeaders({'Access-Control-Allow-Origin':'http://localhost:4200', 'Content-Type': 'application/json'})
 };
-const apiUrl = "https://localhost:44396/api/employees";
+const apiUrl = "https://localhost:44319/api/v1/employees";
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +16,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getEmployees (): Observable<Employee[]> {
-    const url = `${apiUrl}/list`
+    const url = `${apiUrl}`
     console.log("url: " + url);
     return this.http.get<Employee[]>(url)
       .pipe(
@@ -26,7 +26,7 @@ export class ApiService {
   }
   
   getEmployee(id: number): Observable<Employee> {
-    const url = `${apiUrl}/list?id=${id}`;
+    const url = `${apiUrl}?id=${id}`;
     console.log("const url: " + url);
     return this.http.get<Employee>(url).pipe(
       tap(_ => console.log(`fetched employee id=${id}`)),
@@ -35,7 +35,7 @@ export class ApiService {
   }
   
   addEmployee (employee): Observable<Employee> {
-    const url = `${apiUrl}/create`;
+    const url = `${apiUrl}`;
     return this.http.post<Employee>(url, employee, httpOptions).pipe(
       tap((employee: Employee) => console.log(`added employee`)),
       catchError(this.handleError<Employee>('addEmployee'))
@@ -43,7 +43,7 @@ export class ApiService {
   }
   
   updateEmployee (id, employee): Observable<any> {
-    const url = `${apiUrl}/update?id=${id}`;
+    const url = `${apiUrl}?id=${id}`;
     return this.http.put(url, employee, httpOptions).pipe(
       tap(_ => console.log(`updated employee id=${id}`)),
       catchError(this.handleError<any>('updateEmployee'))
@@ -51,7 +51,7 @@ export class ApiService {
   }
   
   deleteEmployee (id): Observable<Employee> {
-    const url = `${apiUrl}/delete?id=${id}`;
+    const url = `${apiUrl}?id=${id}`;
   
     return this.http.delete<Employee>(url, httpOptions).pipe(
       tap(_ => console.log(`deleted employee id=${id}`)),

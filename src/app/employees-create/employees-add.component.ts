@@ -32,7 +32,7 @@ export class EmployeesAddComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.addEmployee(form)
       .subscribe(res => {
-        let id = res[0].id;
+        let id = res.id;
         console.log("_id " + id);
         this.isLoadingResults = false;
         this.router.navigate(['/employees-list', id]);
